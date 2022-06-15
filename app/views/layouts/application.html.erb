@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myamplenotes</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+       
+    
+        <%= form_tag(tags_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search]) %>
+          <%= submit_tag ("Search") %>
+        <% end %>
+  
+        <% if user_signed_in? %>
+        
+            <ul>
+              <li class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= link_to current_user.email, class: "nav-link dropdown-toggle", id: "navbarDropdownMenuLink" %>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li class="nav-item">  
+                    <%= link_to "log out", destroy_user_session_path, method: :delete %>
+                  </li>
+
+                  <li class="nav-item">
+                      <%= link_to "sign In", new_user_session_path %>
+                  </li>
+                </ul>  
+              </li>  
+            </ul>
+            
+        <% end %>
+
+      </div>
+    </nav>
+      
+    <%= yield %>
+  </body>
+</html>

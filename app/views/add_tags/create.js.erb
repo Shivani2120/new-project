@@ -1,0 +1,2 @@
+$(".add_tag<%= @tag.id %>").prepend("<%= j render(:partial => 'add_tags/add_tag', locals: {add_tag: @add_tag, tag: @tag}) %>")
+$(".content_<%= @tag.id %>").val("")

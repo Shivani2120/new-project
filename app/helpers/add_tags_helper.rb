@@ -1,0 +1,2 @@
+module AddTagsHelper
+end
