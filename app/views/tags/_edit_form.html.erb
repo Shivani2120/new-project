@@ -1,0 +1,9 @@
+
+
+<%= form_for tag, remote: true do |form| %>
+    <%= form.text_area :content, style: "width: 100%; height: 400px;" %>
+                <br/>
+    <%= form.submit "Save Note",class: "btn btn-outline-primary save-note" %> 
+<% end %>
+
+ 

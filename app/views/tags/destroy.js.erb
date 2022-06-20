@@ -1,1 +1,4 @@
-$(".delete_tag<%= @add_tag_id %>").remove()
+
+$("#tagForm_<%= @tag.id %>").remove();
+$("#addtag-section").html("")
+<%= ajax_flash('#top-div') %>

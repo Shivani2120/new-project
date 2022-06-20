@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :tags do
-    resources :add_tags
-  end
+  resources :tags
 
   root to: "home#index"
 

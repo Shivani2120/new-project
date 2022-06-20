@@ -15,3 +15,19 @@ require("jquery")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+//   $(document).on('turbolinks:load', function(){
+//     $("#addtag").click(function(){
+//         $("#addtag-section").fadeToggle();
+//         // $(this).fadeToggle();
+//     });
+//   });
+ 
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})

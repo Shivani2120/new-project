@@ -1,72 +1,73 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
-  # GET /tags or /tags.json
   def index
     if params[:search].present?
       @tags = current_user.tags.joins(:user).where("tags.title Like ?", "%"+params[:search]+"%")
     else
-      @tags = Tag.all
+      @tags = current_user.tags
     end
   end
+ 
 
-  # GET /tags/1 or /tags/1.json
-  def show
-  end
-
-  # GET /tags/new
-  def new
-    @tag = Tag.new
-  end
-
-  # GET /tags/1/edit
   def edit
+      @tag = current_user.tags.find(params[:id])
   end
 
-  # POST /tags or /tags.json
+  def show
+      @tag = current_user.tags.find(params[:id])
+  end
+
+  def new
+      @tag = current_user.tags.build
+  end
+
   def create
-    @user = current_user
-    @tag = @user.tags.build(tag_params)
-
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to tag_url(@tag), notice: "Tag was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+      @user = current_user
+      @tag = @user.tags.build(tag_params)
+      @tag.save
+      respond_to do |format|
+        format.js do
+          if @tag.valid?
+            flash.now[:notice] = "Your tag was successfully created"
+          else
+            flash.now[:error] = "You tag was not created"
+          end
+        end
       end
-      format.js { }
-    end
   end
 
-  # PATCH/PUT /tags/1 or /tags/1.json
   def update
-    respond_to do |format|
-      if @tag.update(tag_params)
-        format.html { redirect_to tag_url(@tag), notice: "Tag was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+      @tag = current_user.tags.find(params[:id])
+      @tag.update(tag_params)
+      respond_to do |format|
+        format.js do
+          if @tag.valid?
+            flash.now[:notice] = "Your note was successfully saved"
+          else
+            flash.now[:error] = "You note was not saved"
+          end
+        end
+      end   
   end
 
-  # DELETE /tags/1 or /tags/1.json
   def destroy
-    @tag.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tags_url, notice: "Tag was successfully destroyed." }
-      format.js { }
-    end
+      @tag = current_user.tags.find(params[:id])
+      @tag.destroy
+      respond_to do |format|
+        format.js do
+          if @tag.valid?
+            flash.now[:notice] = "Your tag was removed successfully "
+          else
+            flash.now[:error] = "You tag was not removed"
+          end
+        end
+      end  
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tag
-      @tag = Tag.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def tag_params
-      params.require(:tag).permit(:title, :user_id)
-    end
+  def tag_params
+      params.require(:tag).permit(:title, :content)
+  end
+  
 end
