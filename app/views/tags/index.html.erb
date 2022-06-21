@@ -13,11 +13,14 @@
            
           <div class="col-4">
             <div id="CrateNote">
-                <% @tags.each do |tag| %>
+              <div id="myDIV">
+                
+                <% @tags.each_with_index do |tag, index| %>
                   
-                    <%= render "tag", tag: tag %>
-                    
+                    <%= render "tag", tag: tag, index: index %>
+                  
                 <% end %>
+              </div>  
             </div>
           </div>
     <!--------------------Notes------------------>    
@@ -37,7 +40,7 @@
 
     <!-- The Modal -->
     <div class="modal" id="myModal">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog" style="width: 400px;">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
@@ -50,6 +53,45 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="editTagModal" tabindex="-1" aria-labelledby="editTagModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editTagModalLabel">Edit Tag Title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <div id="EditTagForm">
+            
+          </div>
+        
+      </div>
+    </div>
+
+
+<!-- The Modal -->
+    <div class="modal" id="editTagModal">
+      <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" data-bs-toggle="modal" data-bs-target="#editTagModal" >
+              <div id="EditTagForm" >
+                  
+              </div>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
 
 
 

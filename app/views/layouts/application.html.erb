@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -26,8 +26,11 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-            
+          </li>   
+        </ul>
+
+        <div class="nav-item">
+        
           <% if user_signed_in? %>
             <div class="dropdown">
               <a class="nav-link dropdown-toggle"  id="dropdownMenuLink" data-bs-toggle="dropdown">
@@ -35,21 +38,12 @@
               </a>
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "log out", destroy_user_session_path, class: "dropdown-item" %>
+                <%= link_to "log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </ul>
             </div>
-            <% else %>
-                <%= link_to "sign up", new_user_session_path, class: "dropdown-item" %>
-          <% end %>       
- 
-        </ul>
-
-        <form class="d-flex" role="search">
-          <%= form_tag(tags_path, method: :get) do %>
-            <%= text_field_tag(:search, params[:search], class: "form-control me-2", placeholder: "Search" ) %>
-            <%= submit_tag ("Search"), class: "btn btn-outline-success" %>
-          <% end %>
-        </form>
+          <% end %>  
+              
+        </div>  
 
       </div>
     </div>

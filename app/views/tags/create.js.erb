@@ -1,4 +1,6 @@
 $("#CrateNote").append("<%= j render("tag", tag: @tag) %>")
+$("#addtag-section").html("<%= j render 'edit_form', tag: @tag %>")
+
 $(".close-modal").click();
 <%= ajax_flash('#top-div') %>
 

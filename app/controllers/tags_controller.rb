@@ -14,6 +14,10 @@ class TagsController < ApplicationController
       @tag = current_user.tags.find(params[:id])
   end
 
+  def edit_note
+      @tag = current_user.tags.find(params[:id])
+  end
+
   def show
       @tag = current_user.tags.find(params[:id])
   end
