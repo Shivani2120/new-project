@@ -1,5 +1,4 @@
 $("#tagRow_<%= @tag.id %>").append("<%= j render( "edit_form", tag: @tag) %>")
-$(".save-note").click();
 <%= ajax_flash('#top-div') %>
 
 

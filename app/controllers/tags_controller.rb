@@ -40,6 +40,20 @@ class TagsController < ApplicationController
         end
       end
   end
+  
+  def update_note
+    @tag = current_user.tags.find(params[:id])
+    @tag.update(tag_params)
+    respond_to do |format|
+      format.js do
+        if @tag.valid?
+          flash.now[:notice] = "Your note was successfully updated"
+        else
+          flash.now[:error] = "You note was not updated"
+        end
+      end
+    end   
+  end
 
   def update
       @tag = current_user.tags.find(params[:id])

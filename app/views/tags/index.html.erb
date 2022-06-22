@@ -68,30 +68,29 @@
       </div>
     </div>
 
+    <script>
 
-<!-- The Modal -->
-    <div class="modal" id="editTagModal">
-      <div class="modal-dialog" style="width: 400px;">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title" data-bs-toggle="modal" data-bs-target="#editTagModal" >
-              <div id="EditTagForm" >
-                  
-              </div>
-            </h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("myDIV");
+        var btns = header.getElementsByClassName("active_button");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+           
+          var current = document.getElementsByClassName("activated");
+          current[0].className = current[0].className.replace("activated", "");
+          this.className += "activated";
+          });
+        }
 
+    </script>
+ 
 
-
-
-
-
-
+    <style> .activated {
+        color: #fff;
+        background-color: #212529;
+        border-color: #212529;
+    } 
+    </style>
 
 
 

@@ -1,0 +1,3 @@
+$("#tagForm_<%= @tag.id %>").html("<%= j render( "tag", tag: @tag) %>");
+$('#editTagModal').modal('hide');
+<%= ajax_flash('#top-div') %>

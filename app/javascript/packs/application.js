@@ -10,12 +10,14 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "@fortawesome/fontawesome-free/css/all"
 
 require("jquery")
+require("trix")
+require("@rails/actiontext")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
 
 //   $(document).on('turbolinks:load', function(){
 //     $("#addtag").click(function(){
@@ -32,13 +34,7 @@ myModal.addEventListener('shown.bs.modal', function () {
   myInput.focus()
 })
     
-// Add active class to the current button (highlight it)
-var header = document.getElementById("myDIV");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
+
+
+
+
